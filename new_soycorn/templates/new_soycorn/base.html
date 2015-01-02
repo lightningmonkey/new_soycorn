@@ -1,0 +1,33 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Soybeans and Corn Advisor Inc</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'new_soycorn/style.css' %}" />
+</head>
+<body>
+<h1><a href="{% url 'index' %}">Webpage title here</a></a></h1>
+{% block content %}
+    <h2>Welcome</h2>
+    <p>
+    Welcome to the Soybean & Corn Advisor. Our mission is to provide our readers with
+    up-to-date information about soybean and corn production in both North and South
+    America. We provide crop analysis that you cannot find anywhere else concerning
+    not only soybeans and corn, but also wheat, cotton, sugarcane, ethanol, and biodiesel
+    production.
+    </p>
+
+    {% if latest_article_list %}
+        <ul>
+        {% for article in latest_article_list %}
+            <li><a href="{% url 'article' article.id %}">{{ article.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No articles are available.</p>
+    {% endif %}
+{% endblock content %}
+</body>
+</html>

@@ -1,0 +1,7 @@
+{% extends "new_soycorn/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+{{  article_str }}<br/>
+{{ lines|linebreaks }}
+{% endblock content %}

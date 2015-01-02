@@ -1,0 +1,13 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'new_soycorn/style.css' %}" />
+
+{% if latest_article_list %}
+    <ul>
+    {% for article in latest_article_list %}
+        <li><a href="{% url 'detail' article.id %}">{{ article.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No articles are available.</p>
+{% endif %}
