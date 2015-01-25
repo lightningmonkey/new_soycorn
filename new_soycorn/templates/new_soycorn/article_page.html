@@ -1,0 +1,13 @@
+{% extends "new_soycorn/article_base_list.html" %}
+{% load staticfiles %}
+
+
+{% block content %}
+    <p>
+        <a href="{% url 'article_page' prev_page %}">PREV</a>
+        <a href="{% url 'article_page' next_page %}">NEXT</a>
+
+    </p>
+    <p>{{ current_page }}</p>
+
+{% endblock content %}

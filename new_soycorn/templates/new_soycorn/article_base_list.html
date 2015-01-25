@@ -1,0 +1,18 @@
+{% extends "new_soycorn/base.html" %}
+{% load staticfiles %}
+
+{% block body %}
+    {% block content %}
+    {% endblock content %}
+    {% if latest_article_list %}
+        <ul>
+        {% for article in latest_article_list %}
+            <li><a href="{% url 'article_single' article.id %}">{{ article.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No articles are available.</p>
+    {% endif %}
+{% endblock body %}
+</body>
+</html>
