@@ -1,7 +1,7 @@
-{% extends "new_soycorn/article_base_list.html" %}
+{% extends "new_soycorn/base.html" %}
 {% load staticfiles %}
 
-{% block content %}
-{{  article_str }}<br/>
+{% block body %}
+<i>{{  article_str }}</i><br/>
 {{ lines|safe }}
-{% endblock content %}
+{% endblock body %}

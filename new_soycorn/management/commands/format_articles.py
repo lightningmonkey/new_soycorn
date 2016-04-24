@@ -21,10 +21,12 @@ class Format(object):
     def run(self):
         for (dirpath, dirnames, file_list) in os.walk(self.new_article_dir):
             for file in file_list:
+                print(file)
                 with open(os.path.join(dirpath, file), 'r') as f:
                     all_lines = f.readlines()
-                all_lines[0] = "<h4>{0}</h4>\n".format(all_lines[0].strip())
-                all_lines[1] = "<h3>{0}</h3>\n".format(all_lines[1].strip())
+                if "<h4>" not in all_lines[0]:
+                    all_lines[0] = "<h4>{0}</h4>\n".format(all_lines[0].strip())
+                    all_lines[1] = "<h3>{0}</h3>\n".format(all_lines[1].strip())
 
                 with open(os.path.join(dirpath, file), 'w') as f:
                     f.writelines(all_lines)

@@ -93,17 +93,20 @@ class Transfer(object):
                 date_str = article_data.file_name.split("-")[0]
                 if not self.parse_date(date_str, article_data):
                     self.logger.error("Could not split {0}".format(l))
-                self.article_list.append(article_data)
-                self.logger.debug("Article data:{0}".format(article_data))
+                else:
+                    self.article_list.append(article_data)
+                    self.logger.debug("Article data:{0}".format(article_data))
 
     def rewrite_files(self):
         for article_data in self.article_list:
             self.logger.debug("{0}".format(article_data))
-            with open(os.path.join(self.old_article_dir, article_data.file_name), "rb") as f:
-                old_str = f.read()
-            with open(os.path.join(self.new_article_dir, article_data.file_name), "w") as f:
-                f.write(old_str)
-            print "boo"
+            try:
+                with open(os.path.join(self.old_article_dir, article_data.file_name), "rb") as f:
+                    old_str = f.read()
+                with open(os.path.join(self.new_article_dir, article_data.file_name), "w") as f:
+                    f.write(old_str)
+            except Exception as e:
+                self.logger.error("Article {0} failed for reason {1}".format(article_data.file_name, e))
 
     def insert_into_db(self):
         for article_data in self.article_list:
