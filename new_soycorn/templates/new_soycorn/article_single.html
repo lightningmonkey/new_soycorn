@@ -2,6 +2,8 @@
 {% load staticfiles %}
 
 {% block body %}
-<i>{{  article_str }}</i><br/>
-{{ lines|safe }}
+    <p style="color:#990000;" >{{  article_str }}</p>
+    <h6>{{ date|safe }}</h6>
+    <h4>{{ title|safe }}</h4>
+    {{ lines|safe }}
 {% endblock body %}
