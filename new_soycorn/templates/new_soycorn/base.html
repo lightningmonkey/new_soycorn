@@ -10,13 +10,8 @@
     <title>Soybeans and Corn Advisor Inc</title>
     <link rel="stylesheet" href="{%  static 'new_soycorn/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{%  static 'new_soycorn/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'new_soycorn/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'new_soycorn/css/soycorn.css' %}">
     
-    <!-- Bootstrap Core CSS -->
-    <link href="{%  static 'new_soycorn/css/bootstrap.min.css' %}" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="{%  static 'new_soycorn/css/business-casual.css' %}" rel="stylesheet">
-
     <!-- Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
@@ -63,6 +58,9 @@
                 </li>
                 <li>
                     <a href="{% url 'contact_us' %}">Contact</a>
+                </li>
+                <li>
+                    <a href="{% url 'about_us' %}">About</a>
                 </li>
             </ul>
         </div>

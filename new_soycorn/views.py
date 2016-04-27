@@ -1,7 +1,12 @@
 import os
+
+from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from new_soycorn.models import Article
 from django.conf import settings
+from django.contrib.staticfiles.templatetags.staticfiles import static
+
+
 
 PAGE_LIMIT = 20
 PAGE_OFFSET = PAGE_LIMIT
@@ -20,6 +25,22 @@ def faq(request):
 def contact_us(request):
     return render(request, 'new_soycorn/contact_us.html', {})
 
+
+def about_us(request):
+    return render(request, 'new_soycorn/about_us.html', {})
+
+
+def pdf_view(request):
+    name = request.GET.get('name', None)
+    if not name:
+        raise Http404("PDF does not exist")
+    try:
+        with open('new_soycorn/static/new_soycorn/pdf/{0}.pdf'.format(name), 'r') as pdf:
+            response = HttpResponse(pdf.read(), content_type='application/pdf')
+            response['Content-Disposition'] = 'inline;filename=some_file.pdf'
+            return response
+    except Exception:
+        raise  Http404("PDF did not work")
 
 def article_page(request, page_number):
     try:

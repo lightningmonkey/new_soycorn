@@ -10,6 +10,8 @@ urlpatterns = patterns('',
                        url(r'^article/page/(\d+)$', views.article_page, name='article_page'),
                        url(r'^faq$', views.faq, name='faq'),
                        url(r'^contact-us$', views.contact_us, name='contact_us'),
+                       url(r'^about-us$', views.about_us, name='about_us'),
+                       url(r'^pdf-view$', views.pdf_view, name='pdf_view'),
 
                        url(r'^admin/', include(admin.site.urls)),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
