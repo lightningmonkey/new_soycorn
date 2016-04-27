@@ -22,7 +22,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/new_soycorn")
 SECRET_KEY = 'j*twaz2k@ja9-s2d%ify=7bdc04mu+zqyh6r^@24uuf0leviwn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = True
 
