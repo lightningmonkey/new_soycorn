@@ -19,7 +19,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/new_soycorn")
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'j*twaz2k@ja9-s2d%ify=7bdc04mu+zqyh6r^@24uuf0leviwn'
+with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
+    SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

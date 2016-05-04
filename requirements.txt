@@ -1,4 +1,4 @@
-Django==1.7
+Django==1.8
 PyYAML==3.11
 awsebcli==3.7.6
 blessed==1.9.5
