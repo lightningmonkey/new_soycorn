@@ -1,11 +1,14 @@
 import os
 
-from django.http import HttpResponse, Http404
+from django.http import Http404
+from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+
 from django.shortcuts import render, get_object_or_404
 from new_soycorn.models import Article
 from django.conf import settings
-from django.contrib.staticfiles.templatetags.staticfiles import static
 
+from .forms import SearchForm
 
 
 PAGE_LIMIT = 20
@@ -40,7 +43,20 @@ def pdf_view(request):
             response['Content-Disposition'] = 'inline;filename=some_file.pdf'
             return response
     except Exception:
-        raise  Http404("PDF did not work")
+        raise Http404("PDF did not work")
+
+
+def article_search(request):
+    context = {'search_article_list': []}
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = SearchForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            a = Article.objects.filter(name__icontains=form.cleaned_data['search_term'])
+            context['search_article_list'] = a
+    return render(request, 'new_soycorn/article_search.html', context)
 
 def article_page(request, page_number):
     try:
@@ -53,7 +69,7 @@ def article_page(request, page_number):
     context = {'latest_article_list': article_list,
                'next_page': page_number+1,
                'prev_page': page_number-1}
-    return render(request, 'new_soycorn/article_page.html', context)
+    return render(request, 'new_soycorn/article_base_list.html', context)
 
 
 def _get_articles(page_number):

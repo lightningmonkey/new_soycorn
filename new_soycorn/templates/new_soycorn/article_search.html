@@ -1,0 +1,28 @@
+{% extends "new_soycorn/base.html" %}
+{% load staticfiles %}
+
+{% block body%}
+{% block content %}
+    <h2>News Search</h2>
+    <p>
+        <a href="{% url 'article_page' 1 %}">News home</a>
+    </p>
+    <p>
+        <form action="/article/search/" method="post">
+            {% csrf_token %}
+            <label for="search_term">Search: </label>
+            <input id="search_term" type="text" name="search_term">
+            <input type="submit" value="OK">
+        </form>
+    </p>
+    {% if search_article_list %}
+        <ul>
+            {% for article in search_article_list %}
+                <li><a href="{% url 'article_single' article.id %}">{{ article.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No articles are available for that search.</p>
+    {% endif %}
+{% endblock content %}
+{% endblock body%}

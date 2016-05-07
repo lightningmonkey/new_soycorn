@@ -2,9 +2,23 @@
 {% load staticfiles %}
 
 {% block body %}
-    <h2>Archive</h2>
     {% block content %}
+        <h2>News</h2>
+        <p>
+            <form action="/article/search/" method="post">
+                {% csrf_token %}
+                <label for="search_term">Search: </label>
+                <input id="search_term" type="text" name="search_term">
+                <input type="submit" value="OK">
+            </form>
+        </p>
+        <p>
+            <a href="{% url 'article_page' prev_page %}">PREV</a>
+            <a href="{% url 'article_page' next_page %}">NEXT</a>
+        </p>
+        <p>{{ current_page }}</p>
     {% endblock content %}
+
     {% if latest_article_list %}
         <ul>
         {% for article in latest_article_list %}
@@ -15,5 +29,3 @@
         <p>No articles are available.</p>
     {% endif %}
 {% endblock body %}
-</body>
-</html>
